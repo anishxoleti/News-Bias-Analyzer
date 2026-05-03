@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>News Bias Analyzer</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+          background: #0f1117;
+          color: #e0e0e0;
+          min-height: 100vh;
+          padding: 40px 20px;
+        }
+
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        h1 {
+          font-size: 28px;
+          font-weight: 700;
+          margin-bottom: 6px;
+          color: #ffffff;
+        }
+
+        .subtitle {
+          color: #6b7280;
+          font-size: 14px;
+          margin-bottom: 32px;
+        }
+
+        .card {
+          background: #1a1d27;
+          border: 1px solid #2a2d3a;
+          border-radius: 12px;
+          padding: 24px;
+          margin-bottom: 20px;
+        }
+
+        label {
+          display: block;
+          font-size: 13px;
+          font-weight: 600;
+          color: #9ca3af;
+          margin-bottom: 6px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        input[type="text"], textarea, select {
+          width: 100%;
+          background: #0f1117;
+          border: 1px solid #2a2d3a;
+          border-radius: 8px;
+          padding: 10px 14px;
+          color: #e0e0e0;
+          font-size: 14px;
+          margin-bottom: 16px;
+          outline: none;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+          border-color: #3b82f6;
+        }
+
+        textarea { resize: vertical; min-height: 120px; }
+
+        .row { display: flex; gap: 12px; }
+        .row > div { flex: 1; }
+
+        button {
+          width: 100%;
+          background: #3b82f6;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          padding: 12px;
+          font-size: 15px;
+          font-weight: 600;
+          cursor: pointer;
+          margin-top: 4px;
+        }
+
+        button:hover { background: #2563eb; }
+        button:disabled { background: #374151; cursor: not-allowed; }
+
+        .divider {
+          text-align: center;
+          color: #4b5563;
+          font-size: 12px;
+          margin: 8px 0 16px;
+        }
+
+        /* Results */
+        #results { display: none; }
+
+        .result-header {
+          font-size: 13px;
+          color: #6b7280;
+          margin-bottom: 16px;
+          line-height: 1.5;
+        }
+
+        .scores-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+          margin-bottom: 16px;
+        }
+
+        .score-box {
+          background: #0f1117;
+          border: 1px solid #2a2d3a;
+          border-radius: 8px;
+          padding: 14px;
+        }
+
+        .score-label {
+          font-size: 11px;
+          font-weight: 700;
+          color: #6b7280;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 4px;
+        }
+
+        .score-value {
+          font-size: 22px;
+          font-weight: 800;
+          color: #ffffff;
+        }
+
+        .score-sub {
+          font-size: 12px;
+          color: #6b7280;
+          margin-top: 2px;
+        }
+
+        .badge {
+          display: inline-block;
+          padding: 4px 10px;
+          border-radius: 6px;
+          font-size: 12px;
+          font-weight: 700;
+          margin-right: 6px;
+          margin-bottom: 6px;
+        }
+
+        .badge-red { background: #2d1515; color: #ef4444; }
+        .badge-yellow { background: #2d2615; color: #f59e0b; }
+        .badge-green { background: #152d1a; color: #22c55e; }
+        .badge-blue { background: #151f2d; color: #3b82f6; }
+
+        .summary-box {
+          background: #0f1117;
+          border-left: 3px solid #3b82f6;
+          border-radius: 0 8px 8px 0;
+          padding: 12px 16px;
+          font-size: 14px;
+          color: #9ca3af;
+          line-height: 1.6;
+        }
+
+        .error {
+          background: #2d1515;
+          border: 1px solid #ef4444;
+          border-radius: 8px;
+          padding: 14px;
+          color: #ef4444;
+          font-size: 14px;
+        }
+
+        .loading { text-align: center; color: #6b7280; padding: 20px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>News Bias Analyzer</h1>
+    <p class="subtitle">Paste a URL or article text to analyze for bias, sentiment, and misinformation</p>
+
+    <div class="card">
+        <label>Article URL</label>
+        <input type="text" id="url" placeholder="https://cnn.com/article..." />
+
+        <div class="divider">— or paste text directly —</div>
+
+        <label>Article Text</label>
+        <textarea id="text" placeholder="Paste article content here..."></textarea>
+
+        <div class="row">
+            <div>
+                <label>Source Name</label>
+                <input type="text" id="source" placeholder="e.g. CNN, Fox News" />
+            </div>
+            <div>
+                <label>Topic</label>
+                <input type="text" id="topic" placeholder="e.g. AI Regulation" />
+            </div>
+        </div>
+
+        <button id="analyzeBtn" onclick="analyze()">Analyze Article</button>
+    </div>
+
+    <div id="results"></div>
+</div>
+
+<script>
+    async function analyze() {
+      const url = document.getElementById("url").value.trim();
+      const text = document.getElementById("text").value.trim();
+      const source = document.getElementById("source").value.trim() || "Unknown";
+      const topic = document.getElementById("topic").value.trim() || "General";
+
+      if (!url && !text) {
+        alert("Please provide a URL or article text.");
+        return;
+      }
+
+      const btn = document.getElementById("analyzeBtn");
+      const resultsDiv = document.getElementById("results");
+
+      btn.disabled = true;
+      btn.textContent = "Analyzing...";
+      resultsDiv.style.display = "block";
+      resultsDiv.innerHTML = '<div class="card loading">Running analysis...</div>';
+
+      try {
+        const response = await fetch("/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url, text, source, topic })
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+          resultsDiv.innerHTML = `<div class="card"><div class="error">${data.error}</div></div>`;
+          return;
+        }
+
+        // Determine badge colors
+        const biasBadgeClass = Math.abs(data.bias_score) <= 1 ? "badge-green" :
+                               Math.abs(data.bias_score) <= 3 ? "badge-yellow" : "badge-red";
+
+        const misinfoBadgeClass = data.misinformation_risk === "Low" ? "badge-green" :
+                                  data.misinformation_risk === "Medium" ? "badge-yellow" : "badge-red";
+
+        const flaggedWords = data.flagged_words.length > 0
+          ? data.flagged_words.map(w => `<span class="badge badge-red">${w}</span>`).join("")
+          : '<span style="color:#6b7280;font-size:13px">None detected</span>';
+
+        resultsDiv.innerHTML = `
+          <div class="card">
+            <p class="result-header">${data.text_preview}</p>
+
+            <div class="scores-grid">
+              <div class="score-box">
+                <div class="score-label">Bias Rating</div>
+                <div class="score-value">${data.bias_rating}</div>
+                <div class="score-sub">Score: ${data.bias_score > 0 ? "+" : ""}${data.bias_score} / 5</div>
+              </div>
+              <div class="score-box">
+                <div class="score-label">Sentiment</div>
+                <div class="score-value">${data.sentiment}</div>
+                <div class="score-sub">Score: ${data.sentiment_score > 0 ? "+" : ""}${data.sentiment_score.toFixed(2)}</div>
+              </div>
+              <div class="score-box">
+                <div class="score-label">Misinformation Risk</div>
+                <div class="score-value">${data.misinformation_risk}</div>
+                <div class="score-sub">${data.misinformation_score} / 10</div>
+              </div>
+              <div class="score-box">
+                <div class="score-label">Blended Risk Score</div>
+                <div class="score-value">${data.blended_risk_score}</div>
+                <div class="score-sub">AI + rule-based / 10</div>
+              </div>
+            </div>
+
+            <div style="margin-bottom:16px">
+              <div class="score-label" style="margin-bottom:8px">Flags</div>
+              <span class="badge ${biasBadgeClass}">${data.bias_rating}</span>
+              <span class="badge ${misinfoBadgeClass}">${data.misinformation_risk} Misinfo Risk</span>
+              ${data.loaded_language ? '<span class="badge badge-red">Loaded Language</span>' : '<span class="badge badge-green">No Loaded Language</span>'}
+            </div>
+
+            <div style="margin-bottom:16px">
+              <div class="score-label" style="margin-bottom:8px">Flagged Words</div>
+              ${flaggedWords}
+            </div>
+
+            <div style="margin-bottom:16px">
+              <div class="score-label" style="margin-bottom:8px">Key Issues</div>
+              ${data.key_issues.map(i => `<span class="badge badge-blue">${i}</span>`).join("")}
+            </div>
+
+            <div class="score-label" style="margin-bottom:8px">Summary</div>
+            <div class="summary-box">${data.summary}</div>
+          </div>
+        `;
+
+      } catch (err) {
+        resultsDiv.innerHTML = `<div class="card"><div class="error">Something went wrong. Check the console.</div></div>`;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Analyze Article";
+      }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "author": "John Doe",
+    "url": "https://example.com/article1",
+    "source_name": "CNN",
+    "source_type": "news",
+    "topic": "AI Regulation",
+    "text": "Experts warn that AI could significantly affect jobs across several industries, calling for immediate government intervention to protect workers."
+  },
+  {
+    "id": "2",
+    "author": "Jane Smith",
+    "url": "https://example.com/post1",
+    "source_name": "Twitter",
+    "source_type": "tweet",
+    "topic": "AI Regulation",
+    "text": "AI is destroying jobs everywhere. Nobody is safe. The government needs to ban this now before it's too late!!!"
+  },
+  {
+    "id": "3",
+    "author": "Reuters Staff",
+    "url": "https://reuters.com/article3",
+    "source_name": "Reuters",
+    "source_type": "news",
+    "topic": "AI Regulation",
+    "text": "Lawmakers are reviewing proposed legislation that would require companies to disclose AI usage in hiring decisions. The bill has bipartisan support but faces opposition from tech industry groups."
+  },
+  {
+    "id": "4",
+    "author": "Mike Johnson",
+    "url": "https://foxnews.com/article4",
+    "source_name": "Fox News",
+    "source_type": "news",
+    "topic": "AI Regulation",
+    "text": "The radical left wants to destroy American innovation by strangling AI companies with burdensome regulations that will send jobs overseas and cripple our economy."
+  },
+  {
+    "id": "5",
+    "author": "AP Staff",
+    "url": "https://apnews.com/article5",
+    "source_name": "AP News",
+    "source_type": "news",
+    "topic": "Climate Policy",
+    "text": "A new report from the IPCC outlines projected temperature increases under various emissions scenarios. Scientists say the findings underscore the urgency of reducing carbon output by 2035."
+  },
+  {
+    "id": "6",
+    "author": "RedditUser99",
+    "url": "https://reddit.com/r/politics/post1",
+    "source_name": "Reddit",
+    "source_type": "social",
+    "topic": "Climate Policy",
+    "text": "Climate change is a hoax pushed by elites to control us. Follow the money. The same people telling us to stop driving are flying private jets everywhere."
+  },
+  {
+    "id": "7",
+    "author": "Sarah Lee",
+    "url": "https://nytimes.com/article7",
+    "source_name": "New York Times",
+    "source_type": "news",
+    "topic": "Climate Policy",
+    "text": "The Biden administration's climate agenda faces mounting criticism from both environmental groups who say it does not go far enough and Republican lawmakers who argue it places undue burdens on American businesses."
+  },
+  {
+    "id": "8",
+    "author": "Tom Richards",
+    "url": "https://wsj.com/article8",
+    "source_name": "Wall Street Journal",
+    "source_type": "news",
+    "topic": "Climate Policy",
+    "text": "New emissions regulations proposed this week could cost the energy sector an estimated $40 billion annually, according to an industry analysis, raising concerns about their impact on consumer energy prices."
+  },
+  {
+    "id": "9",
+    "author": "Dave Kim",
+    "url": "https://techcrunch.com/article9",
+    "source_name": "TechCrunch",
+    "source_type": "news",
+    "topic": "AI Regulation",
+    "text": "Startups are increasingly concerned that sweeping AI regulation could stifle innovation before it has a chance to mature. Several founders argue that self-regulation is a more practical path forward."
+  },
+  {
+    "id": "10",
+    "author": "Anonymous",
+    "url": "https://facebook.com/post123",
+    "source_name": "Facebook",
+    "source_type": "social",
+    "topic": "Climate Policy",
+    "text": "They want us to eat bugs and live in pods while they destroy our farms and take away our gas stoves. Wake up people this is all planned."
+  }
+]

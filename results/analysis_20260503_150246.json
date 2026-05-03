@@ -1,0 +1,343 @@
+[
+  {
+    "id": "1",
+    "source": "CNN",
+    "source_type": "news",
+    "topic": "AI Regulation",
+    "author": "John Doe",
+    "text": "Experts warn that AI could significantly affect jobs across several industries, calling for immediate government intervention to protect workers.",
+    "analysis": {
+      "bias_rating": "Center-Left",
+      "bias_score": -1,
+      "sentiment": "Neutral",
+      "sentiment_score": 0.0,
+      "misinformation_risk": "Low",
+      "misinformation_score": 2,
+      "loaded_language": false,
+      "key_issues": [
+        "AI Regulation",
+        "Job Protection"
+      ],
+      "summary": "The article presents a neutral, fact-based discussion on the need for AI regulation, with a slight lean to the left due to its focus on worker protection.",
+      "hf_sentiment": "Neutral",
+      "hf_confidence": 0.558,
+      "distortion_analysis": {
+        "distortion_score": 0,
+        "loaded_words_found": [],
+        "hedge_words_found": [],
+        "exclamation_count": 0,
+        "caps_ratio": 0.0,
+        "flag": false
+      },
+      "blended_risk_score": 1.2
+    }
+  },
+  {
+    "id": "2",
+    "source": "Twitter",
+    "source_type": "tweet",
+    "topic": "AI Regulation",
+    "author": "Jane Smith",
+    "text": "AI is destroying jobs everywhere. Nobody is safe. The government needs to ban this now before it's too late!!!",
+    "analysis": {
+      "bias_rating": "Left",
+      "bias_score": -2,
+      "sentiment": "Very Negative",
+      "sentiment_score": -0.871,
+      "misinformation_risk": "High",
+      "misinformation_score": 8,
+      "loaded_language": true,
+      "key_issues": [
+        "Job Loss",
+        "Government Regulation"
+      ],
+      "summary": "The tweet expresses a strongly negative sentiment towards AI, using loaded language and making an exaggerated claim about its impact on jobs, indicating a high risk of misinformation.",
+      "hf_sentiment": "Negative",
+      "hf_confidence": 0.942,
+      "distortion_analysis": {
+        "distortion_score": 5.0,
+        "loaded_words_found": [
+          "destroy"
+        ],
+        "hedge_words_found": [],
+        "exclamation_count": 3,
+        "caps_ratio": 0.0,
+        "flag": true
+      },
+      "blended_risk_score": 6.8
+    }
+  },
+  {
+    "id": "3",
+    "source": "Reuters",
+    "source_type": "news",
+    "topic": "AI Regulation",
+    "author": "Reuters Staff",
+    "text": "Lawmakers are reviewing proposed legislation that would require companies to disclose AI usage in hiring decisions. The bill has bipartisan support but faces opposition from tech industry groups.",
+    "analysis": {
+      "bias_rating": "Center",
+      "bias_score": 0,
+      "sentiment": "Neutral",
+      "sentiment_score": 0.0,
+      "misinformation_risk": "Low",
+      "misinformation_score": 0,
+      "loaded_language": false,
+      "key_issues": [
+        "AI Regulation",
+        "Legislation"
+      ],
+      "summary": "The article provides a neutral and factual report on the proposed legislation regarding AI regulation, with no apparent bias or misinformation.",
+      "hf_sentiment": "Neutral",
+      "hf_confidence": 0.725,
+      "distortion_analysis": {
+        "distortion_score": 0,
+        "loaded_words_found": [],
+        "hedge_words_found": [],
+        "exclamation_count": 0,
+        "caps_ratio": 0.0,
+        "flag": false
+      },
+      "blended_risk_score": 0.0
+    }
+  },
+  {
+    "id": "4",
+    "source": "Fox News",
+    "source_type": "news",
+    "topic": "AI Regulation",
+    "author": "Mike Johnson",
+    "text": "The radical left wants to destroy American innovation by strangling AI companies with burdensome regulations that will send jobs overseas and cripple our economy.",
+    "analysis": {
+      "bias_rating": "Far-Right",
+      "bias_score": 5,
+      "sentiment": "Negative",
+      "sentiment_score": -0.871,
+      "misinformation_risk": "High",
+      "misinformation_score": 8,
+      "loaded_language": true,
+      "key_issues": [
+        "AI Regulation",
+        "Economic Policy"
+      ],
+      "summary": "The article exhibits a strong far-right bias, using loaded language to criticize the left and promote a negative view of AI regulation.",
+      "hf_sentiment": "Negative",
+      "hf_confidence": 0.941,
+      "distortion_analysis": {
+        "distortion_score": 4.0,
+        "loaded_words_found": [
+          "radical",
+          "destroy"
+        ],
+        "hedge_words_found": [],
+        "exclamation_count": 0,
+        "caps_ratio": 0.0,
+        "flag": false
+      },
+      "blended_risk_score": 6.4
+    }
+  },
+  {
+    "id": "5",
+    "source": "AP News",
+    "source_type": "news",
+    "topic": "Climate Policy",
+    "author": "AP Staff",
+    "text": "A new report from the IPCC outlines projected temperature increases under various emissions scenarios. Scientists say the findings underscore the urgency of reducing carbon output by 2035.",
+    "analysis": {
+      "bias_rating": "Center",
+      "bias_score": 0,
+      "sentiment": "Neutral",
+      "sentiment_score": 0.0,
+      "misinformation_risk": "Low",
+      "misinformation_score": 0,
+      "loaded_language": false,
+      "key_issues": [
+        "Climate Policy",
+        "Carbon Emissions"
+      ],
+      "summary": "The article presents a neutral report on climate policy based on a new IPCC report without displaying any notable bias or misinformation.",
+      "hf_sentiment": "Neutral",
+      "hf_confidence": 0.691,
+      "distortion_analysis": {
+        "distortion_score": 0.4,
+        "loaded_words_found": [],
+        "hedge_words_found": [],
+        "exclamation_count": 0,
+        "caps_ratio": 0.04,
+        "flag": false
+      },
+      "blended_risk_score": 0.2
+    }
+  },
+  {
+    "id": "6",
+    "source": "Reddit",
+    "source_type": "social",
+    "topic": "Climate Policy",
+    "author": "RedditUser99",
+    "text": "Climate change is a hoax pushed by elites to control us. Follow the money. The same people telling us to stop driving are flying private jets everywhere.",
+    "analysis": {
+      "bias_rating": "Far-Right",
+      "bias_score": 5,
+      "sentiment": "Very Negative",
+      "sentiment_score": -0.798,
+      "misinformation_risk": "High",
+      "misinformation_score": 9,
+      "loaded_language": true,
+      "key_issues": [
+        "Climate Change",
+        "Elitism"
+      ],
+      "summary": "The article expresses a strongly right-biased and negative sentiment, with a high risk of misinformation, by claiming climate change is a hoax and implying elitist manipulation.",
+      "hf_sentiment": "Negative",
+      "hf_confidence": 0.796,
+      "distortion_analysis": {
+        "distortion_score": 2.0,
+        "loaded_words_found": [
+          "hoax"
+        ],
+        "hedge_words_found": [],
+        "exclamation_count": 0,
+        "caps_ratio": 0.0,
+        "flag": false
+      },
+      "blended_risk_score": 6.2
+    }
+  },
+  {
+    "id": "7",
+    "source": "New York Times",
+    "source_type": "news",
+    "topic": "Climate Policy",
+    "author": "Sarah Lee",
+    "text": "The Biden administration's climate agenda faces mounting criticism from both environmental groups who say it does not go far enough and Republican lawmakers who argue it places undue burdens on American businesses.",
+    "analysis": {
+      "bias_rating": "Center",
+      "bias_score": 0,
+      "sentiment": "Neutral",
+      "sentiment_score": -0.385,
+      "misinformation_risk": "Low",
+      "misinformation_score": 0,
+      "loaded_language": false,
+      "key_issues": [
+        "Climate Policy",
+        "Political Criticism"
+      ],
+      "summary": "The article presents a balanced view of the Biden administration's climate agenda, citing criticism from both environmental groups and Republican lawmakers.",
+      "hf_sentiment": "Negative",
+      "hf_confidence": 0.77,
+      "distortion_analysis": {
+        "distortion_score": 0,
+        "loaded_words_found": [],
+        "hedge_words_found": [],
+        "exclamation_count": 0,
+        "caps_ratio": 0.0,
+        "flag": false
+      },
+      "blended_risk_score": 0.0
+    }
+  },
+  {
+    "id": "8",
+    "source": "Wall Street Journal",
+    "source_type": "news",
+    "topic": "Climate Policy",
+    "author": "Tom Richards",
+    "text": "New emissions regulations proposed this week could cost the energy sector an estimated $40 billion annually, according to an industry analysis, raising concerns about their impact on consumer energy prices.",
+    "analysis": {
+      "bias_rating": "Center-Right",
+      "bias_score": 2,
+      "sentiment": "Negative",
+      "sentiment_score": -0.552,
+      "misinformation_risk": "Low",
+      "misinformation_score": 1,
+      "loaded_language": false,
+      "key_issues": [
+        "energy prices",
+        "emissions regulations"
+      ],
+      "summary": "The article presents a neutral report on the potential costs of new emissions regulations, but frames the impact in a way that may be perceived as slightly negative towards climate policy.",
+      "hf_sentiment": "Negative",
+      "hf_confidence": 0.705,
+      "distortion_analysis": {
+        "distortion_score": 0,
+        "loaded_words_found": [],
+        "hedge_words_found": [
+          "according to"
+        ],
+        "exclamation_count": 0,
+        "caps_ratio": 0.0,
+        "flag": false
+      },
+      "blended_risk_score": 0.6
+    }
+  },
+  {
+    "id": "9",
+    "source": "TechCrunch",
+    "source_type": "news",
+    "topic": "AI Regulation",
+    "author": "Dave Kim",
+    "text": "Startups are increasingly concerned that sweeping AI regulation could stifle innovation before it has a chance to mature. Several founders argue that self-regulation is a more practical path forward.",
+    "analysis": {
+      "bias_rating": "Center",
+      "bias_score": 0,
+      "sentiment": "Neutral",
+      "sentiment_score": 0.0,
+      "misinformation_risk": "Low",
+      "misinformation_score": 2,
+      "loaded_language": false,
+      "key_issues": [
+        "AI Regulation",
+        "Innovation"
+      ],
+      "summary": "The article presents a neutral view on AI regulation, highlighting startup concerns and arguments for self-regulation without taking a clear stance.",
+      "hf_sentiment": "Neutral",
+      "hf_confidence": 0.612,
+      "distortion_analysis": {
+        "distortion_score": 0,
+        "loaded_words_found": [],
+        "hedge_words_found": [],
+        "exclamation_count": 0,
+        "caps_ratio": 0.0,
+        "flag": false
+      },
+      "blended_risk_score": 1.2
+    }
+  },
+  {
+    "id": "10",
+    "source": "Facebook",
+    "source_type": "social",
+    "topic": "Climate Policy",
+    "author": "Anonymous",
+    "text": "They want us to eat bugs and live in pods while they destroy our farms and take away our gas stoves. Wake up people this is all planned.",
+    "analysis": {
+      "bias_rating": "Far-Right",
+      "bias_score": 5,
+      "sentiment": "Very Negative",
+      "sentiment_score": -0.932,
+      "misinformation_risk": "High",
+      "misinformation_score": 8,
+      "loaded_language": true,
+      "key_issues": [
+        "Climate Policy",
+        "Conspiracy Theories"
+      ],
+      "summary": "The article exhibits a strong far-right bias and high misinformation risk due to its use of loaded language and promotion of unsubstantiated conspiracy theories about climate policy.",
+      "hf_sentiment": "Negative",
+      "hf_confidence": 0.965,
+      "distortion_analysis": {
+        "distortion_score": 2.0,
+        "loaded_words_found": [
+          "destroy"
+        ],
+        "hedge_words_found": [],
+        "exclamation_count": 0,
+        "caps_ratio": 0.0,
+        "flag": false
+      },
+      "blended_risk_score": 5.6
+    }
+  }
+]
