@@ -2,7 +2,5 @@ flask
 groq
 requests
 beautifulsoup4
-transformers
-torch
 python-dotenv
 gunicorn
