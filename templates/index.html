@@ -209,6 +209,21 @@
 </div>
 
 <script>
+    function getBiasContext(score) {
+  if (score <= -4) return "Far left — strongly progressive framing";
+  if (score <= -2) return "Left leaning — favors liberal viewpoints";
+  if (score === -1) return "Slightly left of center — mild liberal lean";
+  if (score === 0) return "Neutral — balanced, factual reporting";
+  if (score === 1) return "Slightly right of center — mild conservative lean";
+  if (score <= 3) return "Right leaning — favors conservative viewpoints";
+  return "Far right — strongly conservative framing";
+}
+
+function getRiskContext(score) {
+  if (score <= 3) return "Low risk — mostly factual, clean language";
+  if (score <= 6) return "Moderate risk — some emotional or biased language";
+  return "High risk — heavy distortion or misinformation signals";
+}
     async function analyze() {
       const url = document.getElementById("url").value.trim();
       const text = document.getElementById("text").value.trim();
@@ -253,54 +268,52 @@
           ? data.flagged_words.map(w => `<span class="badge badge-red">${w}</span>`).join("")
           : '<span style="color:#6b7280;font-size:13px">None detected</span>';
 
-        resultsDiv.innerHTML = `
-          <div class="card">
-            <p class="result-header">${data.text_preview}</p>
+resultsDiv.innerHTML = `
+  <div class="card">
+    <div class="scores-grid">
+      <div class="score-box">
+        <div class="score-label">Bias Rating</div>
+        <div class="score-value">${data.bias_rating}</div>
+        <div class="score-sub">${getBiasContext(data.bias_score)}</div>
+      </div>
+      <div class="score-box">
+        <div class="score-label">Sentiment</div>
+        <div class="score-value">${data.sentiment}</div>
+        <div class="score-sub">Score: ${data.sentiment_score > 0 ? "+" : ""}${data.sentiment_score.toFixed(2)}</div>
+      </div>
+      <div class="score-box">
+        <div class="score-label">Misinformation Risk</div>
+        <div class="score-value">${data.misinformation_risk}</div>
+        <div class="score-sub">${data.misinformation_score} / 10</div>
+      </div>
+      <div class="score-box">
+        <div class="score-label">Blended Risk Score</div>
+        <div class="score-value">${data.blended_risk_score}</div>
+        <div class="score-sub">${getRiskContext(data.blended_risk_score)}</div>
+      </div>
+    </div>
 
-            <div class="scores-grid">
-              <div class="score-box">
-                <div class="score-label">Bias Rating</div>
-                <div class="score-value">${data.bias_rating}</div>
-                <div class="score-sub">Score: ${data.bias_score > 0 ? "+" : ""}${data.bias_score} / 5</div>
-              </div>
-              <div class="score-box">
-                <div class="score-label">Sentiment</div>
-                <div class="score-value">${data.sentiment}</div>
-                <div class="score-sub">Score: ${data.sentiment_score > 0 ? "+" : ""}${data.sentiment_score.toFixed(2)}</div>
-              </div>
-              <div class="score-box">
-                <div class="score-label">Misinformation Risk</div>
-                <div class="score-value">${data.misinformation_risk}</div>
-                <div class="score-sub">${data.misinformation_score} / 10</div>
-              </div>
-              <div class="score-box">
-                <div class="score-label">Blended Risk Score</div>
-                <div class="score-value">${data.blended_risk_score}</div>
-                <div class="score-sub">AI + rule-based / 10</div>
-              </div>
-            </div>
+    <div style="margin-bottom:16px">
+      <div class="score-label" style="margin-bottom:8px">Flags</div>
+      <span class="badge ${biasBadgeClass}">${data.bias_rating}</span>
+      <span class="badge ${misinfoBadgeClass}">${data.misinformation_risk} Misinfo Risk</span>
+      ${data.loaded_language ? '<span class="badge badge-red">Loaded Language</span>' : '<span class="badge badge-green">No Loaded Language</span>'}
+    </div>
 
-            <div style="margin-bottom:16px">
-              <div class="score-label" style="margin-bottom:8px">Flags</div>
-              <span class="badge ${biasBadgeClass}">${data.bias_rating}</span>
-              <span class="badge ${misinfoBadgeClass}">${data.misinformation_risk} Misinfo Risk</span>
-              ${data.loaded_language ? '<span class="badge badge-red">Loaded Language</span>' : '<span class="badge badge-green">No Loaded Language</span>'}
-            </div>
+    <div style="margin-bottom:16px">
+      <div class="score-label" style="margin-bottom:8px">Flagged Words</div>
+      ${flaggedWords}
+    </div>
 
-            <div style="margin-bottom:16px">
-              <div class="score-label" style="margin-bottom:8px">Flagged Words</div>
-              ${flaggedWords}
-            </div>
+    <div style="margin-bottom:16px">
+      <div class="score-label" style="margin-bottom:8px">Key Issues</div>
+      ${data.key_issues.map(i => `<span class="badge badge-blue">${i}</span>`).join("")}
+    </div>
 
-            <div style="margin-bottom:16px">
-              <div class="score-label" style="margin-bottom:8px">Key Issues</div>
-              ${data.key_issues.map(i => `<span class="badge badge-blue">${i}</span>`).join("")}
-            </div>
-
-            <div class="score-label" style="margin-bottom:8px">Summary</div>
-            <div class="summary-box">${data.summary}</div>
-          </div>
-        `;
+    <div class="score-label" style="margin-bottom:8px">Summary</div>
+    <div class="summary-box">${data.summary}</div>
+  </div>
+`;
 
       } catch (err) {
         resultsDiv.innerHTML = `<div class="card"><div class="error">Something went wrong. Check the console.</div></div>`;
